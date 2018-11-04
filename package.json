@@ -1,0 +1,14 @@
+{
+  "name": "generator-bee",
+  "version": "1.0.0",
+  "description": "springboot bee",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^1.1.1"
+  }
+}
