@@ -4,23 +4,75 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     // Calling the super constructor is important so our generator is correctly set up
     super(args, opts);
+    this.props = { fields: [] }
+    this.attr
   }
   async prompting() {
-    const answers = await this.prompt([{
+
+    let myquestions = [{
       type: 'input',
       name: 'name',
       message: 'Your project name',
       default: this.appname // Default to current folder name
     }, {
-      type: 'confirm',
-      name: 'cool',
-      message: 'Would you like to enable the Cool feature?'
-    }]);
-
-    this.log('app name', answers.name);
-    this.log('cool feature', answers.cool);
+      type: 'input',
+      name: 'packageName',
+      message: 'your package name',
+      default: 'com.bee'
+    }]
+    await this.prompt(myquestions).then(function (answers) {
+      this.props.basePath = answers.packageName.replace(/\./g, '/')
+      this.props.packageName = answers.packageName
+      this.props.name = answers.name
+    }.bind(this), function () {
+      console.log('this is a unknow error')
+    })
   }
   writing() {
-    this.log('cool feature', this.answers.cool); // user answer `cool` used
+    //function
+    let convert = (str) => str.toLowerCase().replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
+
+    this.fs.copyTpl(
+      this.templatePath('.gitignore'),
+      this.destinationPath('.gitignore'),
+    )
+    this.fs.copyTpl(
+      this.templatePath('build.gradle'),
+      this.destinationPath('build.gradle'),
+      // { title: 'Templating with Yeoman' }
+    )
+    this.fs.copyTpl(
+      this.templatePath('settings.gradle'),
+      this.destinationPath('settings.gradle'),
+      { name: this.props.name }
+    )
+    this.fs.copyTpl(
+      this.templatePath('gradlew'),
+      this.destinationPath('gradlew'),
+      // { title: 'Templating with Yeoman' }
+    )
+    this.fs.copyTpl(
+      this.templatePath('gradlew.bat'),
+      this.destinationPath('gradlew.bat'),
+      // { title: 'Templating with Yeoman' }
+    )
+    this.fs.copyTpl(
+      this.templatePath('src/main/java/com/bee/demo/DemoApplication.java'),
+      this.destinationPath('src/main/java/' + this.props.basePath + '/' + convert(this.props.name) + 'Application.java'),
+      { name: convert(this.props.name), packageName: this.props.packageName }
+    );
+    this.fs.copyTpl(
+      this.templatePath('src/main/resources/application.properties'),
+      this.destinationPath('src/main/resources/application.properties'),
+    );
+    this.fs.copy(
+      this.templatePath('gradle/wrapper/gradle-wrapper.jar'),
+      this.destinationPath('gradle/wrapper/gradle-wrapper.jar'),
+    );
+    this.fs.copyTpl(
+      this.templatePath('gradle/wrapper/gradle-wrapper.properties'),
+      this.destinationPath('gradle/wrapper/gradle-wrapper.properties'),
+    );
+
   }
 };
