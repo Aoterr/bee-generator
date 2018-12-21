@@ -1,14 +1,23 @@
 {
-  "name": "generator-bee",
+  "name": "generator-beeb",
   "version": "1.0.0",
-  "description": "springboot bee",
+  "description": "a springboot generator",
   "files": [
     "generators"
   ],
   "keywords": [
+    "springboot",
     "yeoman-generator"
   ],
   "dependencies": {
     "yeoman-generator": "^1.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aoterr/generator-bee"
+  },
+  "author": {
+    "name": "bee",
+    "email": "guos591@gmail.com"
   }
 }
