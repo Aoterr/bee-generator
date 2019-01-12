@@ -54,10 +54,9 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('gradlew.bat'),
       this.destinationPath('gradlew.bat'),
-      // { title: 'Templating with Yeoman' }
     )
     this.fs.copyTpl(
-      this.templatePath('src/main/java/com/bee/demo/DemoApplication.java'),
+      this.templatePath('src/main/java/com/bee/DemoApplication.java'),
       this.destinationPath('src/main/java/' + this.props.basePath + '/' + convert(this.props.name) + 'Application.java'),
       { name: convert(this.props.name), packageName: this.props.packageName }
     );
@@ -73,6 +72,25 @@ module.exports = class extends Generator {
       this.templatePath('gradle/wrapper/gradle-wrapper.properties'),
       this.destinationPath('gradle/wrapper/gradle-wrapper.properties'),
     );
-
+    this.fs.copy(
+      this.templatePath('src/main/java/com/bee/common'),
+      this.destinationPath('src/main/java/com/bee/common')
+    );
+    this.fs.copy(
+      this.templatePath('src/main/java/com/bee/config'),
+      this.destinationPath('src/main/java/com/bee/config')
+    );
+    this.fs.copy(
+      this.templatePath('src/main/java/com/bee/doman'),
+      this.destinationPath('src/main/java/com/bee/doman')
+    );
+    this.fs.copy(
+      this.templatePath('src/main/java/com/bee/repository'),
+      this.destinationPath('src/main/java/com/bee/repository')
+    );
+    this.fs.copy(
+      this.templatePath('src/main/java/com/bee/controller'),
+      this.destinationPath('src/main/java/com/bee/controller')
+    );
   }
 };

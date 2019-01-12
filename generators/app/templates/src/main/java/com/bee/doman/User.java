@@ -1,4 +1,4 @@
-package com.bee.demo.entity;
+package com.bee.doman;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import javax.persistence.Table;
  * created by guos on 2018/11/2
  */
 @Entity
-@Table(name = "home_work_users")
+@Table(name = "t_user")
 public class User {
 
 

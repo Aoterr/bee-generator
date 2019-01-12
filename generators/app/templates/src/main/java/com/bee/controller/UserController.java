@@ -1,7 +1,7 @@
-package com.bee.demo.web;
+package com.bee.controller;
 
-import com.bee.demo.entity.User;
-import com.bee.demo.repository.UserRepository;
+import com.bee.doman.User;
+import com.bee.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +13,14 @@ import java.util.List;
  * created by guos on 2018/11/4
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/api/user")
 public class UserController {
 
     @Resource
     UserRepository userRepository;
 
 
-    @GetMapping("list")
+    @GetMapping("/list")
     public List<User> getById() {
         List<User> users = userRepository.findAll();
         return users;

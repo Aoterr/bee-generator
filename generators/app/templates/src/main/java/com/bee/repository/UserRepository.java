@@ -1,6 +1,6 @@
-package com.bee.demo.repository;
+package com.bee.repository;
 
-import com.bee.demo.entity.User;
+import com.bee.doman.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
