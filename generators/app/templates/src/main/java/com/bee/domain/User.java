@@ -1,4 +1,4 @@
-package com.bee.doman;
+package com.bee.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,23 +13,30 @@ import javax.persistence.Table;
 @Table(name = "t_user")
 public class User {
 
-
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String realname;
     private String username;
     private String password;
     private String roles;
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
     public String getUsername() {
         return username;
     }
